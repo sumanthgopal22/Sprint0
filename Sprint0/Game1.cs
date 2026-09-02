@@ -2,13 +2,16 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace Sprint0
 {
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private Texture2D _link;
+        private SpriteBatch spriteBatch;
+        private Texture2D LinkTexture;
+
+        public LinkMovement LinkMove;
 
         public Game1()
         {
@@ -26,8 +29,8 @@ namespace Sprint0
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _link = Content.Load<Texture2D>("Link/link");
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            LinkTexture = Content.Load<Texture2D>("Link/LinkForward1");
             
 
         }
@@ -37,8 +40,6 @@ namespace Sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -47,13 +48,13 @@ namespace Sprint0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Begin the sprite batch to prepare for rendering
-            _spriteBatch.Begin();
+            spriteBatch.Begin();
 
             // Draw Link at the at top left of the screen
-            _spriteBatch.Draw(_link, Vector2.Zero, Color.White);
+            spriteBatch.Draw(LinkTexture, Vector2.Zero, null, Color.White, 0, Vector2.Zero, scale: 2, SpriteEffects.None, 0);
 
             // Always end the sprite batch after drawing
-            _spriteBatch.End();
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
