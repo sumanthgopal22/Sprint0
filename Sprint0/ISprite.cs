@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace Sprint0
 {
-    internal interface IPlayer
+    internal interface ISprite
     {
-        void Move(Vector2 direction);
-
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime);
-
+        public void Draw(SpriteBatch spriteBatch, Texture2D textureAtlas, Vector2 linkPosition, GameTime gameTime);
     }
 }

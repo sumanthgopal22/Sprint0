@@ -1,34 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
 
 namespace Sprint0
 {
     public class Link : IPlayer
     {
-        private Texture2D LinkTexture;
+        private Texture2D textureAtlas;
 
+        //get (public) means links position can be read anywhere,
+        //while private set only allows for the code within the link class to change his position
         public Vector2 LinkPosition { get; private set; }
-        public float Speed { get; set; } = 200f; // Pixels per second
+
+        public SpriteAnimation SpriteAnimation;
 
         public Link(Vector2 startPosition, Texture2D texture)
         {
             LinkPosition = startPosition;
-            LinkTexture = texture;
+            textureAtlas = texture;
+            SpriteAnimation = new SpriteAnimation();
 
         }
 
         public void Move(Vector2 direction)
         {
-            float moveAmount = 2f;
+            float moveAmount = 1f;
 
             LinkPosition = LinkPosition + (direction * moveAmount);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(LinkTexture, LinkPosition, Color.White);
+            SpriteAnimation.Draw(spriteBatch, textureAtlas, LinkPosition, gameTime);
         }
     }
 }

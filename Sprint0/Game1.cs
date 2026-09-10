@@ -9,7 +9,7 @@ namespace Sprint0
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private Texture2D linkTexture;
+        private Texture2D linkAtlas;
         private IPlayer link;
         private IController keyboardController;
 
@@ -36,9 +36,10 @@ namespace Sprint0
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            linkTexture = Content.Load<Texture2D>("Link/LinkForward1");
+            linkAtlas = Content.Load<Texture2D>("Link/LinkAtlas");
 
-            link = new Link(new Vector2(400,300), linkTexture);
+            link = new Link(new Vector2(400,300), linkAtlas);
+
             keyboardController = new KeyboardController();
 
 
@@ -53,7 +54,6 @@ namespace Sprint0
             Vector2 movementDirection = keyboardController.GetMovementDirection();
             link.Move(movementDirection);
 
-
             base.Update(gameTime);
         }
 
@@ -63,12 +63,9 @@ namespace Sprint0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //Draws link into the SpriteBatch within begin/end block
-            spriteBatch.Begin();
 
-            link.Draw(spriteBatch);
+            link.Draw(spriteBatch, gameTime);
 
-            spriteBatch.End();
-            
 
             base.Draw(gameTime);
         }

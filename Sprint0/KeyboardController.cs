@@ -10,20 +10,21 @@ namespace Sprint0
         {
             Vector2 direction = Vector2.Zero;
             KeyboardState keyboardState = Keyboard.GetState();
+            MouseState mouseState = Mouse.GetState();
 
-            if (keyboardState.IsKeyDown(Keys.W))
+            if (keyboardState.IsKeyDown(Keys.W) || mouseState.ScrollWheelValue > 1)
             {
                 direction.Y -= 1;
             }
-            else if (keyboardState.IsKeyDown(Keys.S))
+            else if (keyboardState.IsKeyDown(Keys.S) || mouseState.ScrollWheelValue < -1)
             {
                 direction.Y += 1;
             }
-            else if (keyboardState.IsKeyDown(Keys.A))
+            else if (keyboardState.IsKeyDown(Keys.A) || mouseState.LeftButton == ButtonState.Pressed)
             {
                 direction.X -= 1;
             }
-            else if (keyboardState.IsKeyDown(Keys.D))
+            else if (keyboardState.IsKeyDown(Keys.D) || mouseState.RightButton == ButtonState.Pressed)
             {
                 direction.X += 1;
             }
