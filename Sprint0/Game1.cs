@@ -7,19 +7,23 @@ namespace Sprint0
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private Texture2D LinkTexture;
+        private Texture2D linkTexture;
+        private IPlayer link;
+        private IController keyboardController;
 
-        public LinkMovement LinkMove;
-
+        
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            graphics.IsFullScreen = false;
         }
 
+        
+        //Gets enviornment ready
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -27,34 +31,44 @@ namespace Sprint0
             base.Initialize();
         }
 
+        //Pull in assets
+        //Loads things in advance
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            LinkTexture = Content.Load<Texture2D>("Link/LinkForward1");
-            
+            linkTexture = Content.Load<Texture2D>("Link/LinkForward1");
+
+            link = new Link(new Vector2(400,300), linkTexture);
+            keyboardController = new KeyboardController();
+
 
         }
 
+        //Check current state of game, update player (Movement)
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Vector2 movementDirection = keyboardController.GetMovementDirection();
+            link.Move(movementDirection);
+
+
             base.Update(gameTime);
         }
 
+        //Publishing to the graphics card based on update
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // Begin the sprite batch to prepare for rendering
+            //Draws link into the SpriteBatch within begin/end block
             spriteBatch.Begin();
 
-            // Draw Link at the at top left of the screen
-            spriteBatch.Draw(LinkTexture, Vector2.Zero, null, Color.White, 0, Vector2.Zero, scale: 2, SpriteEffects.None, 0);
+            link.Draw(spriteBatch);
 
-            // Always end the sprite batch after drawing
             spriteBatch.End();
+            
 
             base.Draw(gameTime);
         }

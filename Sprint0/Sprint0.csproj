@@ -12,6 +12,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\Link\link.png" />
+    <None Remove="Content\Link\LinkBack1.png" />
+    <None Remove="Content\Link\LinkBack2.png" />
+    <None Remove="Content\Link\LinkForward1.png" />
+    <None Remove="Content\Link\LinkForward2.png" />
+    <None Remove="Content\Link\LinkSide1.png" />
+    <None Remove="Content\Link\LinkSide2.png" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>

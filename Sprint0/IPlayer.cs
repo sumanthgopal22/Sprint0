@@ -1,13 +1,18 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Sprint0
 {
     internal interface IPlayer
     {
-        public bool MoveUp();
-        public bool MoveDown();
-        public bool MoveLeft();
-        public bool MoveRight();
-    }
+        void Move(Vector2 direction);
 
+        public void Draw(SpriteBatch spriteBatch);
+
+    }
 }
