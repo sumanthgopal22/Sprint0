@@ -118,9 +118,7 @@ namespace Sprint0
                 flip = lastFrameFlip;
             }
             
-            spriteBatch.Begin();
             spriteBatch.Draw(textureAtlas, linkPosition, source, Color.White, 0f, Vector2.Zero, 1f, flip, 0f);
-            spriteBatch.End();
         }
     }
 

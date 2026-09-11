@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Sprint0
 {
@@ -9,6 +10,8 @@ namespace Sprint0
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Texture2D linkAtlas;
+        private SpriteFont spriteFont;
+        private Vector2 fontPosition;
         private IPlayer link;
         private IController keyboardAndMouseController;
 
@@ -35,8 +38,12 @@ namespace Sprint0
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             linkAtlas = Content.Load<Texture2D>("Link/LinkAtlas");
+            spriteFont = Content.Load<SpriteFont>("MyMenuFont");
+            Viewport viewPort = graphics.GraphicsDevice.Viewport;
 
             link = new Link(new Vector2(400,300), linkAtlas);
+            fontPosition = new Vector2(400, 400);
+
 
             keyboardAndMouseController = new KeyboardAndMouseController();
 
@@ -61,11 +68,20 @@ namespace Sprint0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //Draws link into the SpriteBatch
+            string output = "Credits \n Program Made By: Sumanth Gopal \n Sprites from: https://www.spriters-resource.com/nes/legendofzelda/asset/8366/";
 
+            spriteBatch.Begin();
+
+            //Draws link into the SpriteBatch
             link.Draw(spriteBatch);
 
+            // Find the center of the string
+            Vector2 FontOrigin = spriteFont.MeasureString(output) / 2;
+            // Draw the string
+            spriteBatch.DrawString(spriteFont, output, fontPosition, Color.Black,
+                0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
