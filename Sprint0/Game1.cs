@@ -11,7 +11,7 @@ namespace Sprint0
         private SpriteBatch spriteBatch;
         private Texture2D linkAtlas;
         private IPlayer link;
-        private IController keyboardController;
+        private IController keyboardAndMouseController;
 
         
         public Game1()
@@ -40,7 +40,7 @@ namespace Sprint0
 
             link = new Link(new Vector2(400,300), linkAtlas);
 
-            keyboardController = new KeyboardController();
+            keyboardAndMouseController = new KeyboardAndMouseController();
 
 
         }
@@ -51,7 +51,7 @@ namespace Sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Vector2 movementDirection = keyboardController.GetMovementDirection();
+            Vector2 movementDirection = keyboardAndMouseController.GetMovementDirection();
             link.Move(movementDirection);
 
             base.Update(gameTime);

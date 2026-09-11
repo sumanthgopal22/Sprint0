@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint0
 {
-    public class KeyboardController : IController
+    public class KeyboardAndMouseController : IController
     {
         public Vector2 GetMovementDirection()
         {
