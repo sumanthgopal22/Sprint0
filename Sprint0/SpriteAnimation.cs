@@ -19,6 +19,7 @@ namespace Sprint0
         private Rectangle lastFrame = new Rectangle(69, 11, 16, 16);
         private SpriteEffects lastFrameFlip = SpriteEffects.None;
 
+        //Initializes the SpriteAnimation class
         public SpriteAnimation()
         {
             linkBack1 = new Rectangle(1, 11, 16,16);
@@ -30,11 +31,9 @@ namespace Sprint0
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D textureAtlas, Vector2 linkPosition, GameTime gameTime)
+        //Cacluates the currentFrame Link should be in using the game time
+        public void Update(GameTime gameTime)
         {
-            KeyboardState keyboardState = Keyboard.GetState();
-            MouseState mouseState = Mouse.GetState();
-
             // Calculates the currentFrame using the game time
             timer = timer + gameTime.ElapsedGameTime.TotalSeconds;
             if (timer >= frameDuration)
@@ -42,7 +41,13 @@ namespace Sprint0
                 timer = 0;
                 currentFrame = (currentFrame + 1) % 2;
             }
+        }
 
+        //Decides what frame to draw based on keyboard or mouse input
+        public void Draw(SpriteBatch spriteBatch, Texture2D textureAtlas, Vector2 linkPosition)
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            MouseState mouseState = Mouse.GetState();
 
             Rectangle source;
             SpriteEffects flip = SpriteEffects.None;

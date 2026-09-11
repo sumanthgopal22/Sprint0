@@ -26,9 +26,8 @@ namespace Sprint0
         //Gets enviornment ready
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+
         }
 
         //Pull in assets
@@ -54,6 +53,7 @@ namespace Sprint0
             Vector2 movementDirection = keyboardAndMouseController.GetMovementDirection();
             link.Move(movementDirection);
 
+            link.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -62,9 +62,9 @@ namespace Sprint0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //Draws link into the SpriteBatch within begin/end block
+            //Draws link into the SpriteBatch
 
-            link.Draw(spriteBatch, gameTime);
+            link.Draw(spriteBatch);
 
 
             base.Draw(gameTime);

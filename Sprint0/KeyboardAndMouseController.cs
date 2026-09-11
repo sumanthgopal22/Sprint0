@@ -6,6 +6,7 @@ namespace Sprint0
 {
     public class KeyboardAndMouseController : IController
     {
+        //Depending on what is pressed it returns a vector of what distance and direction is covered
         public Vector2 GetMovementDirection()
         {
             Vector2 direction = Vector2.Zero;

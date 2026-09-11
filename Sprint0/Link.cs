@@ -13,6 +13,7 @@ namespace Sprint0
 
         public SpriteAnimation SpriteAnimation;
 
+        //Initializes the Link class
         public Link(Vector2 startPosition, Texture2D texture)
         {
             LinkPosition = startPosition;
@@ -21,6 +22,7 @@ namespace Sprint0
 
         }
 
+        //Calculates Links move distance
         public void Move(Vector2 direction)
         {
             float moveAmount = 1f;
@@ -28,9 +30,16 @@ namespace Sprint0
             LinkPosition = LinkPosition + (direction * moveAmount);
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        //Links update called the sprite animation class
+        public void Update(GameTime gameTime)
         {
-            SpriteAnimation.Draw(spriteBatch, textureAtlas, LinkPosition, gameTime);
+            SpriteAnimation.Update(gameTime);
+        }
+
+        //Links draw calls the sprite animation class
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            SpriteAnimation.Draw(spriteBatch, textureAtlas, LinkPosition);
         }
     }
 }

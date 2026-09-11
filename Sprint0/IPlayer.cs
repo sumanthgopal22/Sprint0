@@ -12,7 +12,9 @@ namespace Sprint0
     {
         void Move(Vector2 direction);
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+        public void Update(GameTime gameTime);
+
+        public void Draw(SpriteBatch spriteBatch);
 
     }
 }
