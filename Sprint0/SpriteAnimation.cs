@@ -32,11 +32,10 @@ namespace Sprint0
 
         public void Draw(SpriteBatch spriteBatch, Texture2D textureAtlas, Vector2 linkPosition, GameTime gameTime)
         {
-
             KeyboardState keyboardState = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
 
-            // advance timer, flip frame when enough time has passed
+            // Calculates the currentFrame using the game time
             timer = timer + gameTime.ElapsedGameTime.TotalSeconds;
             if (timer >= frameDuration)
             {
